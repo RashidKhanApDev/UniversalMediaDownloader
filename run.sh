@@ -21,6 +21,16 @@ source venv/bin/activate
 echo "Installing dependencies..."
 pip install -r requirements.txt
 
+echo ""
+echo "==================================================="
+echo "📱 TO ACCESS FROM YOUR ANDROID PHONE / LOCAL NETWORK:"
+echo "Ensure your phone and PC are connected to the same Wi-Fi."
+echo "Find your Local IP Address below and type it into your phone's browser like so: http://YOUR_IP_ADDRESS:8000"
+echo "==================================================="
+hostname -I || ipconfig getifaddr en0 || echo "IP could not be automatically determined. Run 'ip a' or 'ifconfig'."
+echo "==================================================="
+echo ""
+
 # Run the server
-echo "Starting server..."
-uvicorn main:app --host localhost --port 8000 --reload
+echo "Starting server and generating public link..."
+python3 run_server.py
