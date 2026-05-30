@@ -6,7 +6,7 @@ if (!(Test-Path -Path "venv")) {
 }
 
 Write-Host "Activating virtual environment..." -ForegroundColor Yellow
-& .\venv\Scripts\Activate.ps1
+. .\venv\Scripts\Activate.ps1
 
 Write-Host "Installing dependencies..." -ForegroundColor Yellow
 pip install -r requirements.txt

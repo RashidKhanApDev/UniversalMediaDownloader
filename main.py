@@ -38,6 +38,7 @@ async def get_video_info(request: URLRequest):
         'quiet': True,
         'no_warnings': True,
         'skip_download': True,
+        'noplaylist': True,
     }
     try:
         def fetch_info():
@@ -92,6 +93,7 @@ async def download_video(request: DownloadRequest):
         'format': request.format_id,
         'outtmpl': output_template,
         'quiet': True,
+        'noplaylist': True,
         'merge_output_format': 'mp4',
     }
     
@@ -119,6 +121,7 @@ async def download_video(request: DownloadRequest):
 
 @app.get("/api/file/{filename}")
 async def get_file(filename: str, title: str = "download"):
+    filename = os.path.basename(filename)
     file_path = os.path.join(DOWNLOAD_DIR, filename)
     if not os.path.exists(file_path):
         raise HTTPException(status_code=404, detail="File not found")
