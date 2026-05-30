@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Downloader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Youtube <span>Downloader</span></h1>
+            <p>Download your favorite videos in high quality</p>
+        </header>
+
+        <main>
+            <div class="input-group">
+                <input type="text" id="url-input" placeholder="Paste YouTube URL here..." autocomplete="off">
+                <button id="fetch-btn">Fetch Video</button>
+            </div>
+
+            <div id="loader" class="hidden">
+                <div class="spinner"></div>
+                <p id="loader-text">Fetching details...</p>
+            </div>
+
+            <div id="error-message" class="hidden"></div>
+
+            <div id="video-card" class="hidden">
+                <div class="thumbnail-container">
+                    <img id="video-thumbnail" src="" alt="Video Thumbnail">
+                </div>
+                <div class="video-info">
+                    <h2 id="video-title"></h2>
+                    <div class="download-controls">
+                        <select id="format-select">
+                            <!-- Options will be populated here -->
+                        </select>
+                        <button id="download-btn">Download</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Developed by <span class="developer-name">Rashid Khan AP</span></p>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
