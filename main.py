@@ -2,6 +2,8 @@ import os
 import glob
 import uuid
 import asyncio
+import json
+from datetime import datetime
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -18,19 +20,57 @@ os.makedirs("templates", exist_ok=True)
 DOWNLOAD_DIR = "downloads"
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
+HISTORY_FILE = "history.json"
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 class URLRequest(BaseModel):
     url: str
+    browser: str = "none"
 
 class DownloadRequest(BaseModel):
     url: str
     format_id: str
+    browser: str = "none"
+    target_format: str = "default"
+
+def save_history(title, target_format, filename):
+    try:
+        if os.path.exists(HISTORY_FILE):
+            with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+                history = json.load(f)
+        else:
+            history = []
+        
+        history.insert(0, {
+            "title": title,
+            "target_format": target_format,
+            "filename": filename,
+            "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        })
+        
+        # Keep only last 50
+        history = history[:50]
+        
+        with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(history, f, indent=4, ensure_ascii=False)
+    except Exception as e:
+        print(f"Failed to save history: {e}")
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     return templates.TemplateResponse(request=request, name="index.html")
+
+@app.get("/api/history")
+async def get_history():
+    if os.path.exists(HISTORY_FILE):
+        try:
+            with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return []
+    return []
 
 @app.post("/api/info")
 async def get_video_info(request: URLRequest):
@@ -39,6 +79,10 @@ async def get_video_info(request: URLRequest):
         'no_warnings': True,
         'skip_download': True,
     }
+    
+    if request.browser and request.browser.lower() != "none":
+        ydl_opts['cookiesfrombrowser'] = (request.browser.lower(),)
+        
     try:
         def fetch_info():
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -92,9 +136,36 @@ async def download_video(request: DownloadRequest):
         'format': request.format_id,
         'outtmpl': output_template,
         'quiet': True,
-        'merge_output_format': 'mp4',
     }
     
+    if request.browser and request.browser.lower() != "none":
+        ydl_opts['cookiesfrombrowser'] = (request.browser.lower(),)
+
+    target = request.target_format.lower()
+    postprocessors = []
+
+    if target in ['mp3', 'wav', 'flac', 'm4a']:
+        # Extract audio
+        ydl_opts['format'] = 'bestaudio/best'
+        postprocessors.append({
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': target,
+            'preferredquality': '192',
+        })
+    elif target in ['mp4', 'mkv']:
+        # Video conversion
+        ydl_opts['merge_output_format'] = target
+        postprocessors.append({
+            'key': 'FFmpegVideoConvertor',
+            'preferedformat': target,
+        })
+    else:
+        # Default
+        ydl_opts['merge_output_format'] = 'mp4'
+
+    if postprocessors:
+        ydl_opts['postprocessors'] = postprocessors
+
     try:
         def download():
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -110,6 +181,8 @@ async def download_video(request: DownloadRequest):
             
         filename = os.path.basename(files[0])
         
+        await asyncio.to_thread(save_history, title, target if target != "default" else "mp4", filename)
+        
         return {
             "download_url": f"/api/file/{filename}",
             "title": title
@@ -124,7 +197,6 @@ async def get_file(filename: str, title: str = "download"):
         raise HTTPException(status_code=404, detail="File not found")
     
     ext = os.path.splitext(filename)[1]
-    # Sanitize title for filename
     safe_title = "".join([c for c in title if c.isalpha() or c.isdigit() or c==' ']).rstrip()
     if not safe_title:
         safe_title = "download"

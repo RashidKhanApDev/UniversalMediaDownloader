@@ -8,7 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoThumbnail = document.getElementById('video-thumbnail');
     const videoTitle = document.getElementById('video-title');
     const formatSelect = document.getElementById('format-select');
+    const browserSelect = document.getElementById('browser-select');
+    const targetFormatSelect = document.getElementById('target-format');
     const downloadBtn = document.getElementById('download-btn');
+
+    // History Elements
+    const historyBtn = document.getElementById('history-btn');
+    const historyModal = document.getElementById('history-modal');
+    const closeHistoryBtn = document.getElementById('close-history');
+    const historyList = document.getElementById('history-list');
+    const historyLoader = document.getElementById('history-loader');
 
     let currentVideoUrl = '';
 
@@ -19,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        const browser = browserSelect.value;
         currentVideoUrl = url;
         hideError();
         videoCard.classList.add('hidden');
@@ -30,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('/api/info', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ url: url })
+                body: JSON.stringify({ url: url, browser: browser })
             });
 
             if (!response.ok) {
@@ -66,6 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     downloadBtn.addEventListener('click', async () => {
         const formatId = formatSelect.value;
+        const browser = browserSelect.value;
+        const targetFormat = targetFormatSelect.value;
+        
         if (!formatId || !currentVideoUrl) return;
 
         hideError();
@@ -74,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Temporarily change button to loading state
         const originalText = downloadBtn.textContent;
         downloadBtn.textContent = 'Processing Download...';
-        loaderText.textContent = "Downloading and processing files on server (this may take a while)...";
+        loaderText.textContent = "Downloading and converting on server (this may take a while for large videos/audio)...";
         loader.classList.remove('hidden');
 
         try {
@@ -83,7 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
                     url: currentVideoUrl,
-                    format_id: formatId
+                    format_id: formatId,
+                    browser: browser,
+                    target_format: targetFormat
                 })
             });
 
@@ -111,6 +126,52 @@ document.addEventListener('DOMContentLoaded', () => {
             downloadBtn.textContent = originalText;
             downloadBtn.disabled = false;
             loader.classList.add('hidden');
+        }
+    });
+
+    // History Modal Logic
+    historyBtn.addEventListener('click', async () => {
+        historyModal.classList.remove('hidden');
+        historyLoader.classList.remove('hidden');
+        historyList.innerHTML = '';
+        
+        try {
+            const response = await fetch('/api/history');
+            const data = await response.json();
+            
+            historyLoader.classList.add('hidden');
+            
+            if (data.length === 0) {
+                historyList.innerHTML = '<p style="text-align:center; color: var(--text-muted);">No downloads yet.</p>';
+                return;
+            }
+            
+            data.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'history-item';
+                div.innerHTML = `
+                    <div class="history-title">${item.title}</div>
+                    <div class="history-meta">
+                        <span>Format: ${item.target_format.toUpperCase()}</span>
+                        <span>${item.date}</span>
+                    </div>
+                `;
+                historyList.appendChild(div);
+            });
+        } catch (err) {
+            historyLoader.classList.add('hidden');
+            historyList.innerHTML = '<p style="color: var(--danger);">Failed to load history.</p>';
+        }
+    });
+
+    closeHistoryBtn.addEventListener('click', () => {
+        historyModal.classList.add('hidden');
+    });
+
+    // Close modal if clicked outside
+    window.addEventListener('click', (e) => {
+        if (e.target === historyModal) {
+            historyModal.classList.add('hidden');
         }
     });
 

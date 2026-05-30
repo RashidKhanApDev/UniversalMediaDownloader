@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youtube Downloader</title>
+    <title>Ultimate Youtube Downloader</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Youtube <span>Downloader</span></h1>
+            <div class="header-top">
+                <h1>Youtube <span>Downloader</span></h1>
+                <button id="history-btn" class="icon-btn">📜 History</button>
+            </div>
             <p>Download your favorite videos in high quality</p>
         </header>
 
@@ -18,6 +21,19 @@
             <div class="input-group">
                 <input type="text" id="url-input" placeholder="Paste YouTube URL here..." autocomplete="off">
                 <button id="fetch-btn">Fetch Video</button>
+            </div>
+
+            <div class="settings-group">
+                <label for="browser-select" title="If the video is private or age-restricted, select the browser where you are logged into YouTube.">🔒 Private Video Access (Cookies):</label>
+                <select id="browser-select">
+                    <option value="none">None (Public Videos)</option>
+                    <option value="chrome">Google Chrome</option>
+                    <option value="edge">Microsoft Edge</option>
+                    <option value="firefox">Mozilla Firefox</option>
+                    <option value="brave">Brave Browser</option>
+                    <option value="opera">Opera</option>
+                    <option value="safari">Safari</option>
+                </select>
             </div>
 
             <div id="loader" class="hidden">
@@ -34,9 +50,26 @@
                 <div class="video-info">
                     <h2 id="video-title"></h2>
                     <div class="download-controls">
-                        <select id="format-select">
-                            <!-- Options will be populated here -->
-                        </select>
+                        <div class="control-row">
+                            <label for="format-select">Quality:</label>
+                            <select id="format-select"></select>
+                        </div>
+                        
+                        <div class="control-row">
+                            <label for="target-format">Convert To:</label>
+                            <select id="target-format">
+                                <option value="default">Default format</option>
+                                <optgroup label="Video">
+                                    <option value="mp4">MP4 Video</option>
+                                    <option value="mkv">MKV Video</option>
+                                </optgroup>
+                                <optgroup label="Audio Only">
+                                    <option value="mp3">MP3 Audio</option>
+                                    <option value="wav">WAV Audio (Lossless)</option>
+                                    <option value="flac">FLAC Audio (Lossless)</option>
+                                </optgroup>
+                            </select>
+                        </div>
                         <button id="download-btn">Download</button>
                     </div>
                 </div>
@@ -46,6 +79,20 @@
         <footer>
             <p>Developed by <span class="developer-name">Rashid Khan AP</span></p>
         </footer>
+    </div>
+
+    <!-- History Modal -->
+    <div id="history-modal" class="hidden modal-overlay">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2>Download History</h2>
+                <button id="close-history">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="history-loader" class="hidden">Loading...</div>
+                <div id="history-list"></div>
+            </div>
+        </div>
     </div>
 
     <script src="/static/js/app.js"></script>
