@@ -16,7 +16,8 @@
 }
 
 body {
-    background-color: var(--primary-bg);
+    background: linear-gradient(135deg, #0ba360 0%, #0f172a 100%);
+    background-attachment: fixed;
     color: var(--text-main);
     overflow-x: hidden;
     position: relative;
