@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ultimate YouTube Downloader - A modern, fast, and secure tool to download YouTube videos in 4K/8K and high-quality audio.">
+    <title>Ultimate YouTube Downloader</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <nav class="glass-nav">
+        <div class="logo">
+            <span class="icon">🎥</span> YtDownloader
+        </div>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="https://github.com/" target="_blank" class="btn-github">View on GitHub</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="glass-container">
+            <h1 class="hero-title">Download with <span class="highlight">Ultimate Power</span></h1>
+            <p class="hero-subtitle">A modern, sleek, and high-performance application to download your favorite YouTube videos in maximum quality up to 8K, powered by FastAPI and yt-dlp.</p>
+            <div class="cta-buttons">
+                <a href="#installation" class="btn btn-primary">Get Started</a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="features-section">
+        <h2 class="section-title">Premium Features</h2>
+        <div class="features-grid">
+            <div class="glass-card feature-card">
+                <div class="feature-icon">🎞️</div>
+                <h3>Extreme Resolution</h3>
+                <p>Support for downloading pristine 1080p, 2K, 4K, and even 8K videos without stuttering.</p>
+            </div>
+            <div class="glass-card feature-card">
+                <div class="feature-icon">🎵</div>
+                <h3>Audio Extraction</h3>
+                <p>Need just the music? Extract crystal-clear MP3/M4A audio seamlessly with a single click.</p>
+            </div>
+            <div class="glass-card feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Blazing Fast</h3>
+                <p>Powered by FastAPI for asynchronous, non-blocking backend execution and top-tier speed.</p>
+            </div>
+            <div class="glass-card feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Glassmorphism UI</h3>
+                <p>A beautiful, responsive, and intuitive interface that brings a premium feel to your desktop.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="installation" class="installation-section">
+        <div class="glass-container install-container">
+            <h2 class="section-title">Quick Installation</h2>
+            <p>To run the application locally, ensure you have Python 3.8+, Node.js, and FFmpeg installed. Then, follow these steps:</p>
+            
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Terminal</span>
+                </div>
+                <pre><code>git clone https://github.com/your-username/YoutubeDownloader.git
+cd YoutubeDownloader
+python -m venv venv
+venv\Scripts\activate  # Or 'source venv/bin/activate' on Mac/Linux
+pip install -r requirements.txt</code></pre>
+            </div>
+            
+            <p class="install-footer">Once installed, just run <code>run.bat</code> (Windows) or <code>./run.sh</code> (Linux) to start the server!</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Ultimate YouTube Downloader. Open Source under MIT License.</p>
+            <p>Made with ❤️ for content creators and viewers alike.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
