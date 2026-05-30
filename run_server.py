@@ -25,7 +25,6 @@ def start_tunnel():
                 print("Send this link to your friends anywhere in the world!")
                 print("="*60 + "\n")
             else:
-                # Optionally print other tunnel logs if needed
                 pass
     except Exception as e:
         print(f"\n[Tunnel Error] Failed to start LocalTunnel: {e}")
@@ -42,6 +41,10 @@ if __name__ == "__main__":
     # Start the FastAPI server using Uvicorn
     print("\n🚀 Starting Youtube Downloader Server...\n")
     try:
-        subprocess.run(['uvicorn', 'main:app', '--host', '0.0.0.0', '--port', '8000', '--reload'])
+        # Use sys.executable to ensure it uses the virtual environment's python correctly
+        # This prevents FileNotFoundError on Windows when looking for 'uvicorn'
+        subprocess.run([sys.executable, '-m', 'uvicorn', 'main:app', '--host', 'localhost', '--port', '8000', '--reload'])
     except KeyboardInterrupt:
         print("\nShutting down server...")
+    except Exception as e:
+        print(f"\n[Server Error] Failed to start Uvicorn: {e}")
