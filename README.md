@@ -1,12 +1,13 @@
-<div align="center">
+<div align="center" style="background: linear-gradient(135deg, #0ba360 0%, #3cba92 100%); padding: 40px; border-radius: 15px; color: white; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
   
-# 🎥 Ultimate YouTube Downloader 🚀
+<h1 style="color: white; border-bottom: none; margin-bottom: 20px;">🎥 Ultimate YouTube Downloader 🚀</h1>
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-*A sleek, high-performance, and professionally designed web application to download YouTube videos in maximum quality.*
+<br>
+<p style="font-size: 1.1em;"><i>A sleek, high-performance, and professionally designed web application to download YouTube videos in maximum quality.</i></p>
 
 </div>
 
