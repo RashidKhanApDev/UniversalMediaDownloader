@@ -1,4 +1,5 @@
 @echo off
+set PYTHONIOENCODING=utf-8
 echo Starting Youtube Downloader Setup...
 
 IF NOT EXIST "venv\" (

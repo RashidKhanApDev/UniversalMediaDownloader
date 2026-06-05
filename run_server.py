@@ -3,6 +3,8 @@ import threading
 import sys
 import time
 
+import webbrowser
+
 def start_tunnel():
     print("\n[Tunnel] Starting LocalTunnel to generate a public link...")
     try:
@@ -22,8 +24,9 @@ def start_tunnel():
                 print("\n" + "="*60)
                 print("🌍 PUBLIC INTERNET LINK GENERATED SUCCESSFULLY!")
                 print(f"👉 Link: {url}")
-                print("Send this link to your friends anywhere in the world!")
                 print("="*60 + "\n")
+                # Automatically open the URL in the default browser
+                webbrowser.open(url)
             else:
                 pass
     except Exception as e:

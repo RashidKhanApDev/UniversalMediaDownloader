@@ -6,6 +6,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
+<a href="https://colab.research.google.com/github/RashidKhanApDev/YoutubeDownloader/blob/main/YoutubeDownloader.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 <br>
 <p style="font-size: 1.1em;"><i>A sleek, high-performance, and professionally designed web application to download YouTube videos in maximum quality.</i></p>
 
