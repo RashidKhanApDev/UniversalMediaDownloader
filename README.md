@@ -26,14 +26,6 @@
 
 </div>
 
-
-
-
-<!-- Project preview image (added by GitHub Copilot) -->
-<p align="center">
-  <img src="assets/preview/ultimate-downloader-preview-1200x360.png" alt="Glowing futuristic UI mockup for 'Ultimate Downloader' showing current downloads, 4K badge, and progress bars, on a dark tech background." width="1200" />
-</p>
-
 ---
 
 ## 📑 Table of Contents
@@ -51,7 +43,7 @@
 
 Welcome to the **Ultimate YouTube Downloader**! This modern, responsive web application is built on top of the lightning-fast **FastAPI** framework and powered by the robust `yt-dlp` library. 
 
-Whether you are looking to save a quick audio track for your playlist or download a stunning cinematic video in pristine **4K or 8K resolution**, this tool has you covered. Designed with a gorgeou[...] 
+Whether you are looking to save a quick audio track for your playlist or download a stunning cinematic video in pristine **4K or 8K resolution**, this tool has you covered. Designed with a gorgeou[...]
 
 ---
 
@@ -293,7 +285,7 @@ services:
 
 ഈ ടൂൾ ഉപയോഗിച്ച് നിങ്ങൾക്ക് YouTube വീഡിയോകളും ഓഡിയോകളും വളരെ എളുപ്പത്തിൽ ഏ��[...]
 
-എറ്റപ്പോഴും മുകളിലുള്ള വലിയ **"RUN IN GOOGLE COLAB"** ബട്ടണിൽ ക്ലിക്കുക, നിങ്ങളുടെ ഫ��[...]
+എറ്റപ്പോഴും മുകളിലുള്ള വലിയ **"RUN IN GOOGLE COLAB"** ബട്ടണിൽ ക്ലിക്ക്, നിങ്ങളുടെ ഫ��[..[...]
 
 നിങ്ങളുടെ സ്വന്തം കമ്പ്യൂട്ടറിൽ (Windows, Ubuntu, Kali Linux തുടങ്ങിയവയിൽ) ഇത് ഇൻസ്റ്റാൾ [...]
 
