@@ -215,6 +215,14 @@ async def download_video(request: DownloadRequest):
 
 @app.get("/api/file/{filename}")
 async def get_file(filename: str, title: str = "download"):
+    if (
+        not filename
+        or filename in (".", "..")
+        or filename != os.path.basename(filename)
+        or not re.fullmatch(r"[\w\s\-\.\(\)\[\]]+", filename)
+    ):
+        raise HTTPException(status_code=400, detail="Invalid file name")
+
     file_path = os.path.abspath(os.path.join(DOWNLOAD_ROOT, filename))
     if os.path.commonpath([DOWNLOAD_ROOT, file_path]) != DOWNLOAD_ROOT:
         raise HTTPException(status_code=400, detail="Invalid file path")
