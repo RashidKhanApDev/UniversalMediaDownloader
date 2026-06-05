@@ -22,6 +22,12 @@
 
 <br><br>
 
+<a href="https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/RashidKhanApDev/YoutubeDownloader.git" target="_blank">
+  <img src="https://img.shields.io/badge/☁️_OPEN_IN_CLOUD_SHELL-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" width="450" alt="Open In Cloud Shell"/>
+</a>
+
+<br><br>
+
 > *Say goodbye to intrusive ads and slow downloads. Experience the premium way to fetch your favorite YouTube content locally or on the cloud.*
 
 </div>
@@ -265,6 +271,14 @@ pip install -r requirements.txt
 # Make script executable and run
 chmod +x run.sh
 ./run.sh
+```
+
+### ☁️ Google Cloud Shell
+```bash
+# Cloud Shell comes pre-installed with requirements. Just run:
+chmod +x run.sh
+./run.sh
+# Then click "Web Preview" -> "Preview on port 8000" in the top right corner!
 ```
 
 ### 🐳 Docker Configuration (YAML)
