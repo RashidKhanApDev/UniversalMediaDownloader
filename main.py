@@ -32,6 +32,7 @@ os.makedirs("static/js", exist_ok=True)
 os.makedirs("templates", exist_ok=True)
 DOWNLOAD_DIR = "downloads"
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
+DOWNLOAD_ROOT = os.path.abspath(DOWNLOAD_DIR)
 
 HISTORY_FILE = "history.json"
 
@@ -214,8 +215,10 @@ async def download_video(request: DownloadRequest):
 
 @app.get("/api/file/{filename}")
 async def get_file(filename: str, title: str = "download"):
-    file_path = os.path.join(DOWNLOAD_DIR, filename)
-    if not os.path.exists(file_path):
+    file_path = os.path.abspath(os.path.join(DOWNLOAD_ROOT, filename))
+    if os.path.commonpath([DOWNLOAD_ROOT, file_path]) != DOWNLOAD_ROOT:
+        raise HTTPException(status_code=400, detail="Invalid file path")
+    if not os.path.isfile(file_path):
         raise HTTPException(status_code=404, detail="File not found")
     
     ext = os.path.splitext(filename)[1]
