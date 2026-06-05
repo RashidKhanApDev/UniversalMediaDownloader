@@ -1,5 +1,6 @@
 <div align="center">
-
+<br>
+<h3>👨‍💻 Dev by <b>Rashid Khan Ap</b> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" width="20" align="center"></h3>
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0ba360&height=250&section=header&text=Ultimate%20YouTube%20Downloader&fontSize=60&fontColor=ffffff&desc=Sleek.%20Fast.%20Premium.&descSize=25&descColor=e0e0e0" width="100%">
 
 <br><br>
@@ -291,6 +292,7 @@ services:
 ---
 
 <div align="center">
+  <h3>👨‍💻 Dev by <b>Rashid Khan Ap</b> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" width="20" align="center"></h3>
   <b>Built with ❤️ using Modern Web Technologies</b><br>
   <i>MIT License. Strictly intended for personal and educational use.</i>
 </div>
