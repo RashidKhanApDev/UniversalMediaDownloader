@@ -1,7 +1,7 @@
 <div align="center">
 <br>
 <h3>👨‍💻 Dev by <b>Rashid Khan Ap</b> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" width="20" align="center"></h3>
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0ba360&height=250&section=header&text=Ultimate%20YouTube%20Downloader&fontSize=60&fontColor=ffffff&desc=Sleek.%20Fast.%20Premium.&descSize=25&descColor=e0e0e0" width="100%">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0ba360&height=250&section=header&text=Ultimate%20YouTube%20Downloader&fontSize=60&fontColor=ffffff&desc=Sleek.%20Fast.%20Premium.&d[...]
 
 <br><br>
 
@@ -26,6 +26,14 @@
 
 </div>
 
+
+
+
+<!-- Project preview image (added by GitHub Copilot) -->
+<p align="center">
+  <img src="assets/preview/ultimate-downloader-preview-1200x360.png" alt="Glowing futuristic UI mockup for 'Ultimate Downloader' showing current downloads, 4K badge, and progress bars, on a dark tech background." width="1200" />
+</p>
+
 ---
 
 ## 📑 Table of Contents
@@ -43,7 +51,7 @@
 
 Welcome to the **Ultimate YouTube Downloader**! This modern, responsive web application is built on top of the lightning-fast **FastAPI** framework and powered by the robust `yt-dlp` library. 
 
-Whether you are looking to save a quick audio track for your playlist or download a stunning cinematic video in pristine **4K or 8K resolution**, this tool has you covered. Designed with a gorgeous, interactive **Glassmorphism UI**, it guarantees a seamless and visually pleasing user experience while maintaining blazing-fast backend performance. 
+Whether you are looking to save a quick audio track for your playlist or download a stunning cinematic video in pristine **4K or 8K resolution**, this tool has you covered. Designed with a gorgeou[...] 
 
 ---
 
@@ -51,7 +59,7 @@ Whether you are looking to save a quick audio track for your playlist or downloa
 
 | 🎥 Extreme High-Resolution | 🎵 Audio-Only Extraction | ⚡ Dynamic Resolution |
 | :---: | :---: | :---: |
-| Seamlessly download videos in 1080p, 1440p (2K), 2160p (4K), and up to 8K. | Extract crystal-clear MP3/M4A audio effortlessly with a single click. | Automatically detects and lists all available formats and resolutions. |
+| Seamlessly download videos in 1080p, 1440p (2K), 2160p (4K), and up to 8K. | Extract crystal-clear MP3/M4A audio effortlessly with a single click. | Automatically detects and lists all available[...]
 
 | 🎨 Modern Aesthetic | 🚀 Fast & Lightweight | ☁️ Cloud Ready |
 | :---: | :---: | :---: |
@@ -283,11 +291,11 @@ services:
 
 ## 🇮🇳 ചെറുവിവരണം (Malayalam Summary)
 
-ഈ ടൂൾ ഉപയോഗിച്ച് നിങ്ങൾക്ക് YouTube വീഡിയോകളും ഓഡിയോകളും വളരെ എളുപ്പത്തിൽ ഏറ്റവും ഉയർന്ന ക്വാളിറ്റിയിൽ (2K, 4K ഉൾപ്പെടെ) ഡൗൺലോഡ് ചെയ്യാവുന്നതാണ്. ഇത് വളരെ ലളിതവും, അതിവേഗത്തിൽ പ്രവർത്തിക്കുന്നതും, ലോകോത്തര പ്രീമിയം ഡിസൈനോടുകൂടിയതുമാണ് (Glassmorphism UI). 
+ഈ ടൂൾ ഉപയോഗിച്ച് നിങ്ങൾക്ക് YouTube വീഡിയോകളും ഓഡിയോകളും വളരെ എളുപ്പത്തിൽ ഏ��[...]
 
-ഏറ്റവും മുകളിലുള്ള വലിയ **"RUN IN GOOGLE COLAB"** ബട്ടണിൽ ക്ലിക്ക് ചെയ്താൽ, നിങ്ങളുടെ ഫോണിൽ നിന്നോ കമ്പ്യൂട്ടറിൽ നിന്നോ യാതൊരുവിധ ഇൻസ്റ്റാളേഷനും ഇല്ലാതെ തന്നെ നേരിട്ട് ക്ലൗഡ് വഴി നിങ്ങൾക്ക് ഈ ടൂൾ ഉപയോഗിക്കാവുന്നതാണ്. 
+എറ്റപ്പോഴും മുകളിലുള്ള വലിയ **"RUN IN GOOGLE COLAB"** ബട്ടണിൽ ക്ലിക്കുക, നിങ്ങളുടെ ഫ��[...]
 
-നിങ്ങളുടെ സ്വന്തം കമ്പ്യൂട്ടറിൽ (Windows, Ubuntu, Kali Linux തുടങ്ങിയവയിൽ) ഇത് ഇൻസ്റ്റാൾ ചെയ്യാനും ഉപയോഗിക്കാനും വളരെ എളുപ്പമാണ്. ഇതിൽ യാതൊരുവിധ പരസ്യങ്ങളുമില്ല, തികച്ചും സുരക്ഷിതമായി നിങ്ങൾക്ക് ആവശ്യമുള്ള വീഡിയോകൾ ഡൗൺലോഡ് ചെയ്തെടുക്കാം.
+നിങ്ങളുടെ സ്വന്തം കമ്പ്യൂട്ടറിൽ (Windows, Ubuntu, Kali Linux തുടങ്ങിയവയിൽ) ഇത് ഇൻസ്റ്റാൾ [...]
 
 ---
 
