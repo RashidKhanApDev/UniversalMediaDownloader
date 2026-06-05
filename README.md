@@ -1,7 +1,7 @@
 <div align="center">
 <br>
 <h3>👨‍💻 Dev by <b>Rashid Khan Ap</b> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" width="20" align="center"></h3>
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0ba360&height=250&section=header&text=Ultimate%20YouTube%20Downloader&fontSize=60&fontColor=ffffff&desc=Sleek.%20Fast.%20Premium.&d[...] 
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0ba360&height=250&section=header&text=Ultimate%20YouTube%20Downloader&fontSize=60&fontColor=ffffff&desc=Sleek.%20Fast.%20Premium.&d[...]
 
 <br><br>
 
@@ -25,14 +25,6 @@
 > *Say goodbye to intrusive ads and slow downloads. Experience the premium way to fetch your favorite YouTube content locally or on the cloud.*
 
 </div>
-
-
-
-
-<!-- Project preview image (added by GitHub Copilot) -->
-<p align="center">
-  <img src="assets/preview/ultimate-downloader-preview-1200x360.png" alt="Glowing futuristic UI mockup for 'Ultimate Downloader' showing current downloads, 4K badge, and progress bars, on a dark t[...]"/>
-</p>
 
 ---
 
@@ -293,7 +285,7 @@ services:
 
 ഈ ടൂൾ ഉപയോഗിച്ച് നിങ്ങൾക്ക് YouTube വീഡിയോകളും ഓഡിയോകളും വളരെ എളുപ്പത്തിൽ ഏ��[...]
 
-എറ്റപ്പോഴും മുകളിലുള്ള വലിയ **"RUN IN GOOGLE COLAB"** ബട്ടണിൽ ക്ലിക്കുക, നിങ്ങളുടെ ഫ��[..[...]
+എറ്റപ്പോഴും മുകളിലുള്ള വലിയ **"RUN IN GOOGLE COLAB"** ബട്ടണിൽ ക്ലിക്ക് ചെയ്താൽ, നിങ്ങളുടെ ഫ��[...]
 
 നിങ്ങളുടെ സ്വന്തം കമ്പ്യൂട്ടറിൽ (Windows, Ubuntu, Kali Linux തുടങ്ങിയവയിൽ) ഇത് ഇൻസ്റ്റാൾ [...]
 
