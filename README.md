@@ -1,6 +1,7 @@
 <div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0ba360&height=250&section=header&text=Ultimate%20YouTube%20Downloader&fontSize=60&fontColor=ffffff&desc=Sleek.%20Fast.%20Premium." alt="Ultimate YouTube Downloader banner" />
+<br>
+<h3>👨‍💻 Dev by <b>Rashid Khan Ap</b> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" width="20" align="center"></h3>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0ba360&height=250&section=header&text=Ultimate%20YouTube%20Downloader&fontSize=60&fontColor=ffffff&desc=Sleek.%20Fast.%20Premium.&descSize=25&descColor=e0e0e0" width="100%">
 
 <br><br>
 
@@ -42,7 +43,7 @@
 
 Welcome to the **Ultimate YouTube Downloader**! This modern, responsive web application is built on top of the lightning-fast **FastAPI** framework and powered by the robust `yt-dlp` library. 
 
-Whether you are looking to save a quick audio track for your playlist or download a stunning cinematic video in pristine **4K or 8K resolution**, this tool has you covered. Designed with a gorgeou[...]
+Whether you are looking to save a quick audio track for your playlist or download a stunning cinematic video in pristine **4K or 8K resolution**, this tool has you covered. Designed with a gorgeous, interactive **Glassmorphism UI**, it guarantees a seamless and visually pleasing user experience while maintaining blazing-fast backend performance. 
 
 ---
 
@@ -50,7 +51,7 @@ Whether you are looking to save a quick audio track for your playlist or downloa
 
 | 🎥 Extreme High-Resolution | 🎵 Audio-Only Extraction | ⚡ Dynamic Resolution |
 | :---: | :---: | :---: |
-| Seamlessly download videos in 1080p, 1440p (2K), 2160p (4K), and up to 8K. | Extract crystal-clear MP3/M4A audio effortlessly with a single click. | Automatically detects and lists all available[...]
+| Seamlessly download videos in 1080p, 1440p (2K), 2160p (4K), and up to 8K. | Extract crystal-clear MP3/M4A audio effortlessly with a single click. | Automatically detects and lists all available formats and resolutions. |
 
 | 🎨 Modern Aesthetic | 🚀 Fast & Lightweight | ☁️ Cloud Ready |
 | :---: | :---: | :---: |
@@ -184,4 +185,114 @@ interface VideoDetails {
 package main
 import "fmt"
 
-{
+func fetchVideoMeta(id string) {
+    fmt.Printf("Fetching high-speed metadata for %s...", id)
+}
+```
+
+### 🗄️ SQL (Future Analytics Schema)
+```sql
+CREATE TABLE IF NOT EXISTS downloads (
+    id UUID PRIMARY KEY,
+    video_url VARCHAR(255) NOT NULL,
+    quality VARCHAR(10) NOT NULL,
+    download_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+### 🐳 Dockerfile (Advanced Containerization)
+```dockerfile
+FROM python:3.9-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+### 🦀 Rust (High-Performance Core Concept)
+```rust
+fn process_stream(buffer: &[u8]) -> Result<(), &'static str> {
+    println!("Processing {} bytes of ultra-fast video stream", buffer.len());
+    Ok(())
+}
+```
+
+### 📝 Markdown (Documentation Standards)
+```markdown
+> **Developer Note**: All architectural decisions follow strict industry standards.
+```
+
+### 📜 TOML (Modern Python Config)
+```toml
+[tool.poetry]
+name = "YoutubeDownloader"
+version = "3.5.0"
+description = "Premium YouTube Downloader with Glassmorphism UI"
+authors = ["Rashid Khan <admin@example.com>"]
+```
+
+---
+
+## 📥 Installation & Setup
+
+Before installing the tool locally, please ensure your system has **Python 3.8+**, **FFmpeg**, and **Node.js**.
+
+### 💻 Command Line Setup (Bash)
+```bash
+# Clone the repository
+git clone https://github.com/RashidKhanApDev/YoutubeDownloader.git
+cd YoutubeDownloader
+
+# Create virtual environment and install dependencies
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+---
+
+## 🚀 How to Run the Server Locally
+
+### 🪟 Windows (PowerShell)
+```powershell
+# Execute the PowerShell script for optimized startup
+.\run.ps1
+```
+
+### 🐧 Linux / macOS (Bash)
+```bash
+# Make script executable and run
+chmod +x run.sh
+./run.sh
+```
+
+### 🐳 Docker Configuration (YAML)
+```yaml
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./downloads:/app/downloads
+```
+
+---
+
+## 🇮🇳 ചെറുവിവരണം (Malayalam Summary)
+
+ഈ ടൂൾ ഉപയോഗിച്ച് നിങ്ങൾക്ക് YouTube വീഡിയോകളും ഓഡിയോകളും വളരെ എളുപ്പത്തിൽ ഏറ്റവും ഉയർന്ന ക്വാളിറ്റിയിൽ (2K, 4K ഉൾപ്പെടെ) ഡൗൺലോഡ് ചെയ്യാവുന്നതാണ്. ഇത് വളരെ ലളിതവും, അതിവേഗത്തിൽ പ്രവർത്തിക്കുന്നതും, ലോകോത്തര പ്രീമിയം ഡിസൈനോടുകൂടിയതുമാണ് (Glassmorphism UI). 
+
+ഏറ്റവും മുകളിലുള്ള വലിയ **"RUN IN GOOGLE COLAB"** ബട്ടണിൽ ക്ലിക്ക് ചെയ്താൽ, നിങ്ങളുടെ ഫോണിൽ നിന്നോ കമ്പ്യൂട്ടറിൽ നിന്നോ യാതൊരുവിധ ഇൻസ്റ്റാളേഷനും ഇല്ലാതെ തന്നെ നേരിട്ട് ക്ലൗഡ് വഴി നിങ്ങൾക്ക് ഈ ടൂൾ ഉപയോഗിക്കാവുന്നതാണ്. 
+
+നിങ്ങളുടെ സ്വന്തം കമ്പ്യൂട്ടറിൽ (Windows, Ubuntu, Kali Linux തുടങ്ങിയവയിൽ) ഇത് ഇൻസ്റ്റാൾ ചെയ്യാനും ഉപയോഗിക്കാനും വളരെ എളുപ്പമാണ്. ഇതിൽ യാതൊരുവിധ പരസ്യങ്ങളുമില്ല, തികച്ചും സുരക്ഷിതമായി നിങ്ങൾക്ക് ആവശ്യമുള്ള വീഡിയോകൾ ഡൗൺലോഡ് ചെയ്തെടുക്കാം.
+
+---
+
+<div align="center">
+  <h3>👨‍💻 Dev by <b>Rashid Khan Ap</b> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" width="20" align="center"></h3>
+  <b>Built with ❤️ using Modern Web Technologies</b><br>
+  <i>MIT License. Strictly intended for personal and educational use.</i>
+</div>
