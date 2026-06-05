@@ -214,7 +214,12 @@ async def download_video(request: DownloadRequest):
 
 @app.get("/api/file/{filename}")
 async def get_file(filename: str, title: str = "download"):
-    file_path = os.path.join(DOWNLOAD_DIR, filename)
+    base_dir = os.path.realpath(DOWNLOAD_DIR)
+    file_path = os.path.realpath(os.path.join(base_dir, filename))
+
+    if os.path.commonpath([base_dir, file_path]) != base_dir:
+        raise HTTPException(status_code=400, detail="Invalid filename")
+
     if not os.path.exists(file_path):
         raise HTTPException(status_code=404, detail="File not found")
     
