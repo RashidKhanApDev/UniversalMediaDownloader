@@ -1,0 +1,95 @@
+<svg width="1280" height="640" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f0f;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF0000;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#DC143C;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1280" height="640" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative Circles -->
+  <circle cx="1100" cy="-50" r="200" fill="#FF0000" opacity="0.05"/>
+  <circle cx="-100" cy="500" r="250" fill="#00B4FF" opacity="0.05"/>
+  <circle cx="640" cy="640" r="300" fill="#FF0000" opacity="0.03"/>
+  
+  <!-- Left Accent Bar -->
+  <rect x="0" y="0" width="8" height="640" fill="url(#accentGradient)"/>
+  
+  <!-- Main Title -->
+  <text x="640" y="140" font-family="Arial, sans-serif" font-size="72" font-weight="bold" text-anchor="middle" fill="#FFFFFF" letter-spacing="2">
+    YouTube Downloader
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="640" y="210" font-family="Arial, sans-serif" font-size="36" text-anchor="middle" fill="#00B4FF">
+    Download & Convert Videos Instantly
+  </text>
+  
+  <!-- Feature Badges -->
+  <!-- Badge 1: Speed -->
+  <rect x="80" y="280" width="200" height="80" rx="10" fill="rgba(255, 255, 255, 0.08)" stroke="#FF0000" stroke-width="2"/>
+  <text x="180" y="310" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#FF0000">⚡</text>
+  <text x="180" y="345" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#FFFFFF">Fast</text>
+  
+  <!-- Badge 2: Quality -->
+  <rect x="340" y="280" width="200" height="80" rx="10" fill="rgba(255, 255, 255, 0.08)" stroke="#00B4FF" stroke-width="2"/>
+  <text x="440" y="310" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#00B4FF">🎬</text>
+  <text x="440" y="345" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#FFFFFF">4K/8K</text>
+  
+  <!-- Badge 3: Audio -->
+  <rect x="600" y="280" width="200" height="80" rx="10" fill="rgba(255, 255, 255, 0.08)" stroke="#00FF88" stroke-width="2"/>
+  <text x="700" y="310" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#00FF88">🎵</text>
+  <text x="700" y="345" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#FFFFFF">MP3</text>
+  
+  <!-- Badge 4: Cloud -->
+  <rect x="860" y="280" width="200" height="80" rx="10" fill="rgba(255, 255, 255, 0.08)" stroke="#FFD700" stroke-width="2"/>
+  <text x="960" y="310" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#FFD700">☁️</text>
+  <text x="960" y="345" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#FFFFFF">Colab</text>
+  
+  <!-- Tech Stack Display -->
+  <text x="80" y="440" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#00B4FF">
+    Powered by:
+  </text>
+  
+  <!-- Tech Badges -->
+  <rect x="80" y="460" width="110" height="45" rx="5" fill="rgba(255, 0, 0, 0.2)" stroke="#FF0000" stroke-width="1"/>
+  <text x="135" y="490" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#FF0000">FastAPI</text>
+  
+  <rect x="210" y="460" width="110" height="45" rx="5" fill="rgba(56, 142, 60, 0.2)" stroke="#3E8E3C" stroke-width="1"/>
+  <text x="265" y="490" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#3E8E3C">Python</text>
+  
+  <rect x="340" y="460" width="110" height="45" rx="5" fill="rgba(240, 141, 15, 0.2)" stroke="#F08D0F" stroke-width="1"/>
+  <text x="395" y="490" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#F08D0F">yt-dlp</text>
+  
+  <rect x="470" y="460" width="110" height="45" rx="5" fill="rgba(255, 193, 7, 0.2)" stroke="#FFC107" stroke-width="1"/>
+  <text x="525" y="490" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#FFC107">FFmpeg</text>
+  
+  <rect x="600" y="460" width="110" height="45" rx="5" fill="rgba(255, 215, 0, 0.2)" stroke="#FFD700" stroke-width="1"/>
+  <text x="655" y="490" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#FFD700">Docker</text>
+  
+  <!-- Features List -->
+  <text x="80" y="560" font-family="Arial, sans-serif" font-size="16" fill="#FFFFFF">
+    ✓ 1080p • 2K • 4K • 8K Resolution Support
+  </text>
+  
+  <text x="80" y="590" font-family="Arial, sans-serif" font-size="16" fill="#FFFFFF">
+    ✓ Audio Extraction (MP3, M4A, WAV, FLAC) • Video Conversion • One-Click Google Colab Deployment
+  </text>
+  
+  <!-- Footer -->
+  <text x="1200" y="625" font-family="Arial, sans-serif" font-size="14" text-anchor="end" fill="#666666">
+    github.com/RashidKhanApDev/YoutubeDownloader
+  </text>
+  
+  <!-- Accent Lines -->
+  <line x1="80" y1="240" x2="1200" y2="240" stroke="#FF0000" stroke-width="2" opacity="0.3"/>
+  <line x1="80" y1="410" x2="1200" y2="410" stroke="#00B4FF" stroke-width="2" opacity="0.2"/>
+</svg>
