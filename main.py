@@ -3,15 +3,28 @@ import glob
 import uuid
 import asyncio
 import json
+import re
+import threading
 from datetime import datetime
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import yt_dlp
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+history_lock = threading.Lock()
 
 # Create necessary directories
 os.makedirs("static/css", exist_ok=True)
@@ -36,27 +49,28 @@ class DownloadRequest(BaseModel):
     target_format: str = "default"
 
 def save_history(title, target_format, filename):
-    try:
-        if os.path.exists(HISTORY_FILE):
-            with open(HISTORY_FILE, "r", encoding="utf-8") as f:
-                history = json.load(f)
-        else:
-            history = []
-        
-        history.insert(0, {
-            "title": title,
-            "target_format": target_format,
-            "filename": filename,
-            "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        })
-        
-        # Keep only last 50
-        history = history[:50]
-        
-        with open(HISTORY_FILE, "w", encoding="utf-8") as f:
-            json.dump(history, f, indent=4, ensure_ascii=False)
-    except Exception as e:
-        print(f"Failed to save history: {e}")
+    with history_lock:
+        try:
+            if os.path.exists(HISTORY_FILE):
+                with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+                    history = json.load(f)
+            else:
+                history = []
+            
+            history.insert(0, {
+                "title": title,
+                "target_format": target_format,
+                "filename": filename,
+                "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            })
+            
+            # Keep only last 50
+            history = history[:50]
+            
+            with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+                json.dump(history, f, indent=4, ensure_ascii=False)
+        except Exception as e:
+            print(f"Failed to save history: {e}")
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
@@ -64,13 +78,14 @@ async def read_root(request: Request):
 
 @app.get("/api/history")
 async def get_history():
-    if os.path.exists(HISTORY_FILE):
-        try:
-            with open(HISTORY_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception:
-            return []
-    return []
+    with history_lock:
+        if os.path.exists(HISTORY_FILE):
+            try:
+                with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception:
+                return []
+        return []
 
 @app.post("/api/info")
 async def get_video_info(request: URLRequest):
@@ -125,7 +140,10 @@ async def get_video_info(request: URLRequest):
             "formats": available_formats
         }
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        error_msg = str(e)
+        if "database is locked" in error_msg.lower() or "permission denied" in error_msg.lower():
+            raise HTTPException(status_code=400, detail="Browser database is locked. Please close your browser to use cookies, or try downloading without cookies.")
+        raise HTTPException(status_code=400, detail=error_msg)
 
 @app.post("/api/download")
 async def download_video(request: DownloadRequest):
@@ -176,10 +194,11 @@ async def download_video(request: DownloadRequest):
         
         # Find the downloaded file
         files = glob.glob(os.path.join(DOWNLOAD_DIR, f"{file_id}.*"))
-        if not files:
-            raise HTTPException(status_code=500, detail="Downloaded file not found")
+        valid_files = [f for f in files if not f.endswith('.part') and not f.endswith('.ytdl')]
+        if not valid_files:
+            raise HTTPException(status_code=500, detail="Downloaded file not found or download failed to merge correctly")
             
-        filename = os.path.basename(files[0])
+        filename = os.path.basename(valid_files[0])
         
         await asyncio.to_thread(save_history, title, target if target != "default" else "mp4", filename)
         
@@ -188,7 +207,10 @@ async def download_video(request: DownloadRequest):
             "title": title
         }
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        error_msg = str(e)
+        if "database is locked" in error_msg.lower() or "permission denied" in error_msg.lower():
+            raise HTTPException(status_code=400, detail="Browser database is locked. Please close your browser to use cookies, or try downloading without cookies.")
+        raise HTTPException(status_code=400, detail=error_msg)
 
 @app.get("/api/file/{filename}")
 async def get_file(filename: str, title: str = "download"):
@@ -197,7 +219,7 @@ async def get_file(filename: str, title: str = "download"):
         raise HTTPException(status_code=404, detail="File not found")
     
     ext = os.path.splitext(filename)[1]
-    safe_title = "".join([c for c in title if c.isalpha() or c.isdigit() or c==' ']).rstrip()
+    safe_title = re.sub(r'[^\w\s\-\(\)\[\]]', '', title).strip()
     if not safe_title:
         safe_title = "download"
     download_name = f"{safe_title}{ext}"
