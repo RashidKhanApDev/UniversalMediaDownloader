@@ -47,8 +47,10 @@
 
 ## 🌟 Overview & Description
 
-<div align="center">
-  <img src="https://opengraph.githubassets.com/1/RashidKhanApDev/UniversalMediaDownloader" width="100%" alt="Universal Media Downloader Preview" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin-top: 20px; margin-bottom: 20px;">
+<div align="center" style="margin-top: 30px; margin-bottom: 40px;">
+  <a href="https://github.com/RashidKhanApDev/UniversalMediaDownloader">
+    <img src="https://opengraph.githubassets.com/1/RashidKhanApDev/UniversalMediaDownloader" width="100%" alt="Universal Media Downloader Premium Preview" style="border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(11, 163, 96, 0.2); border: 1px solid rgba(255, 255, 255, 0.1);">
+  </a>
 </div>
 
 Welcome to the **Universal Media Downloader**! This modern, responsive web application is built on top of the lightning-fast **FastAPI** framework and powered by the robust `yt-dlp` library. 
