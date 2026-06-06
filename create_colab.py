@@ -337,7 +337,7 @@ nb = {
         "            Open / Copy Access Link\n",
         "        </button>\n",
         "        \n",
-        "        <div class=\"footer-text\">Powered by Advanced Fallback Architecture</div>\n",
+        "        <div class=\"footer-text\">✅ Setup Complete! The server is now running perfectly in the background.</div>\n",
         "    </div>\n",
         "</div>\n",
         "\n",
@@ -398,12 +398,7 @@ nb = {
         "</script>\n",
         "\"\"\"\n",
         "display(HTML(html_code))\n",
-        "\n",
-        "try:\n",
-        "    while True:\n",
-        "        time.sleep(1)\n",
-        "except KeyboardInterrupt:\n",
-        "    pass\n"
+        "print('\\n✅ Setup Complete! The system is now running cleanly in the background.')\n"
       ]
     }
   ]
