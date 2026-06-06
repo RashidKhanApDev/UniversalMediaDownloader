@@ -49,7 +49,7 @@
 
 <div align="center" style="margin-top: 30px; margin-bottom: 40px;">
   <a href="https://github.com/RashidKhanApDev/UniversalMediaDownloader">
-    <img src="https://opengraph.githubassets.com/1/RashidKhanApDev/UniversalMediaDownloader" width="100%" alt="Universal Media Downloader Premium Preview" style="border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(11, 163, 96, 0.2); border: 1px solid rgba(255, 255, 255, 0.1);">
+    <img src="assets/promo_banner.png" width="100%" alt="Universal Media Downloader Premium Preview" style="border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(11, 163, 96, 0.2); border: 1px solid rgba(255, 255, 255, 0.1);">
   </a>
 </div>
 
