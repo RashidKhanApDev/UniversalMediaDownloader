@@ -5,6 +5,7 @@ import asyncio
 import json
 import re
 import threading
+import shutil
 from datetime import datetime
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import HTMLResponse, FileResponse
@@ -48,6 +49,7 @@ class DownloadRequest(BaseModel):
     format_id: str
     browser: str = "none"
     target_format: str = "default"
+    is_playlist: bool = False
 
 def save_history(title, target_format, filename):
     with history_lock:
@@ -94,6 +96,8 @@ async def get_video_info(request: URLRequest):
         'quiet': True,
         'no_warnings': True,
         'skip_download': True,
+        'extract_flat': 'in_playlist',
+        'noplaylist': True, # Downloads single video if URL has both video ID & playlist ID
     }
     
     if request.browser and request.browser.lower() != "none":
@@ -106,36 +110,58 @@ async def get_video_info(request: URLRequest):
         
         info = await asyncio.to_thread(fetch_info)
         
+        # Handle Playlists
+        if info.get('_type') == 'playlist':
+            entries = info.get('entries', [])
+            return {
+                "is_playlist": True,
+                "title": info.get('title', 'Unknown Playlist'),
+                "count": len(entries),
+                "thumbnail": entries[0].get('thumbnails', [{}])[0].get('url') if entries and entries[0].get('thumbnails') else "",
+                "formats": []
+            }
+        
+        # Handle Single Videos & Social Media
         resolutions = {}
         for f in info.get('formats', []):
             if f.get('vcodec') != 'none':
                 height = f.get('height')
                 if height:
                     res_label = f"{height}p"
-                    # Prefer formats that already have audio, else combine with bestaudio
                     if f.get('acodec') != 'none':
                         resolutions[res_label] = f['format_id']
                     else:
                         if res_label not in resolutions:
-                            resolutions[res_label] = f"{f['format_id']}+bestaudio"
+                            resolutions[res_label] = f"{f['format_id']}+bestaudio/best"
+                else:
+                    # Non-YouTube platforms might not have height
+                    format_note = f.get('format_note', '')
+                    if format_note and format_note not in resolutions:
+                        resolutions[format_note] = f['format_id']
 
-        sorted_res = sorted(resolutions.keys(), key=lambda x: int(x.replace('p', '')), reverse=True)
+        # Sort numeric resolutions if possible
+        def get_res_val(k):
+            match = re.search(r'(\d+)p', k)
+            return int(match.group(1)) if match else 0
+            
+        sorted_res = sorted(resolutions.keys(), key=get_res_val, reverse=True)
         available_formats = []
         for res in sorted_res:
             label = f"Video: {res}"
-            if res == "1440p":
-                label = "Video: 1440p (2K)"
-            elif res == "2160p":
-                label = "Video: 2160p (4K)"
-            elif res == "2880p":
-                label = "Video: 2880p (5K)"
-            elif res == "4320p":
-                label = "Video: 4320p (8K)"
+            if res == "1440p": label = "Video: 1440p (2K)"
+            elif res == "2160p": label = "Video: 2160p (4K)"
+            elif res == "2880p": label = "Video: 2880p (5K)"
+            elif res == "4320p": label = "Video: 4320p (8K)"
             available_formats.append({'id': resolutions[res], 'label': label})
         
-        available_formats.append({'id': 'bestaudio', 'label': 'Audio Only (Best Quality)'})
+        # Fallback if no specific formats parsed (e.g., TikTok/Instagram)
+        if not available_formats:
+            available_formats.append({'id': 'bestvideo+bestaudio/best', 'label': 'Best Quality (Video + Audio)'})
+            
+        available_formats.append({'id': 'bestaudio/best', 'label': 'Audio Only (Best Quality)'})
 
         return {
+            "is_playlist": False,
             "title": info.get('title', 'Unknown Title'),
             "thumbnail": info.get('thumbnail', ''),
             "formats": available_formats
@@ -149,18 +175,29 @@ async def get_video_info(request: URLRequest):
 @app.post("/api/download")
 async def download_video(request: DownloadRequest):
     file_id = str(uuid.uuid4())
-    output_template = os.path.join(DOWNLOAD_DIR, f"{file_id}.%(ext)s")
+    target = request.target_format.lower()
+    
+    if request.is_playlist:
+        # For playlists, download into a folder and ZIP it
+        playlist_dir = os.path.join(DOWNLOAD_DIR, file_id)
+        os.makedirs(playlist_dir, exist_ok=True)
+        output_template = os.path.join(playlist_dir, "%(playlist_index)s - %(title)s.%(ext)s")
+    else:
+        output_template = os.path.join(DOWNLOAD_DIR, f"{file_id}.%(ext)s")
     
     ydl_opts = {
         'format': request.format_id,
         'outtmpl': output_template,
         'quiet': True,
+        'noplaylist': not request.is_playlist, # enforce single video rule
     }
+    
+    if request.is_playlist:
+        ydl_opts['playlistend'] = 100 # limit to 100 items to prevent exhaustion
     
     if request.browser and request.browser.lower() != "none":
         ydl_opts['cookiesfrombrowser'] = (request.browser.lower(),)
 
-    target = request.target_format.lower()
     postprocessors = []
 
     if target in ['mp3', 'wav', 'flac', 'm4a']:
@@ -168,7 +205,7 @@ async def download_video(request: DownloadRequest):
         ydl_opts['format'] = 'bestaudio/best'
         postprocessors.append({
             'key': 'FFmpegExtractAudio',
-            'preferredcodec': target,
+            'preferredcodec': target if target != 'default' else 'mp3',
             'preferredquality': '192',
         })
     elif target in ['mp4', 'mkv']:
@@ -180,7 +217,8 @@ async def download_video(request: DownloadRequest):
         })
     else:
         # Default
-        ydl_opts['merge_output_format'] = 'mp4'
+        if not request.is_playlist:
+            ydl_opts['merge_output_format'] = 'mp4'
 
     if postprocessors:
         ydl_opts['postprocessors'] = postprocessors
@@ -189,19 +227,29 @@ async def download_video(request: DownloadRequest):
         def download():
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(request.url, download=True)
-                return info.get('title', 'video')
+                return info.get('title', 'Media')
 
         title = await asyncio.to_thread(download)
         
-        # Find the downloaded file
-        files = glob.glob(os.path.join(DOWNLOAD_DIR, f"{file_id}.*"))
-        valid_files = [f for f in files if not f.endswith('.part') and not f.endswith('.ytdl')]
-        if not valid_files:
-            raise HTTPException(status_code=500, detail="Downloaded file not found or download failed to merge correctly")
+        if request.is_playlist:
+            # Create a zip archive of the downloaded directory
+            zip_path = os.path.join(DOWNLOAD_DIR, file_id)
+            await asyncio.to_thread(shutil.make_archive, zip_path, 'zip', playlist_dir)
             
-        filename = os.path.basename(valid_files[0])
-        
-        await asyncio.to_thread(save_history, title, target if target != "default" else "mp4", filename)
+            # Clean up raw folder
+            await asyncio.to_thread(shutil.rmtree, playlist_dir, ignore_errors=True)
+            
+            filename = f"{file_id}.zip"
+            await asyncio.to_thread(save_history, title, "ZIP (Playlist)", filename)
+        else:
+            # Find the downloaded file for single video
+            files = glob.glob(os.path.join(DOWNLOAD_DIR, f"{file_id}.*"))
+            valid_files = [f for f in files if not f.endswith('.part') and not f.endswith('.ytdl')]
+            if not valid_files:
+                raise HTTPException(status_code=500, detail="Downloaded file not found or download failed to merge correctly")
+                
+            filename = os.path.basename(valid_files[0])
+            await asyncio.to_thread(save_history, title, target if target != "default" else "mp4", filename)
         
         return {
             "download_url": f"/api/file/{filename}",

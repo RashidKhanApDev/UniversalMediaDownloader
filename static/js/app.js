@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const historyLoader = document.getElementById('history-loader');
 
     let currentVideoUrl = '';
+    let currentIsPlaylist = false;
 
     fetchBtn.addEventListener('click', async () => {
         const url = urlInput.value.trim();
@@ -49,19 +50,43 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const data = await response.json();
+            currentIsPlaylist = data.is_playlist || false;
             
             // Populate video card
-            videoThumbnail.src = data.thumbnail;
+            videoThumbnail.src = data.thumbnail || 'https://via.placeholder.com/640x360.png?text=Media';
             videoTitle.textContent = data.title;
+            
+            // Toggle Playlist UI
+            const playlistBadge = document.getElementById('playlist-badge');
+            const playlistCount = document.getElementById('playlist-count');
+            const formatRow = document.getElementById('format-row');
+            
+            if (currentIsPlaylist) {
+                playlistBadge.classList.remove('hidden');
+                playlistBadge.style.display = 'inline-flex';
+                playlistCount.textContent = data.count || 0;
+                formatRow.style.display = 'none';
+            } else {
+                playlistBadge.classList.add('hidden');
+                playlistBadge.style.display = 'none';
+                formatRow.style.display = 'flex';
+            }
             
             // Populate formats
             formatSelect.innerHTML = '';
-            data.formats.forEach(format => {
+            if (currentIsPlaylist) {
                 const option = document.createElement('option');
-                option.value = format.id;
-                option.textContent = format.label;
+                option.value = "bestvideo+bestaudio/best";
+                option.textContent = "Auto Best Quality";
                 formatSelect.appendChild(option);
-            });
+            } else if (data.formats) {
+                data.formats.forEach(format => {
+                    const option = document.createElement('option');
+                    option.value = format.id;
+                    option.textContent = format.label;
+                    formatSelect.appendChild(option);
+                });
+            }
 
             loader.classList.add('hidden');
             videoCard.classList.remove('hidden');
@@ -98,7 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     url: currentVideoUrl,
                     format_id: formatId,
                     browser: browser,
-                    target_format: targetFormat
+                    target_format: targetFormat,
+                    is_playlist: currentIsPlaylist
                 })
             });
 
