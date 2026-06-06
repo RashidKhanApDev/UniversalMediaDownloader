@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchBtn.addEventListener('click', async () => {
         const url = urlInput.value.trim();
         if (!url) {
-            showError("Please enter a valid YouTube URL.");
+            showError("Please enter a valid Media URL.");
             return;
         }
 
