@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Starting Youtube Downloader Setup..."
+echo "Starting Universal Media Downloader Setup..."
 
 # Check if python3 is installed
 if ! command -v python3 &> /dev/null

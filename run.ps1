@@ -1,4 +1,4 @@
-Write-Host "Starting Youtube Downloader Setup..." -ForegroundColor Cyan
+Write-Host "Starting Universal Media Downloader Setup..." -ForegroundColor Cyan
 
 if (!(Test-Path -Path "venv")) {
     Write-Host "Creating virtual environment..." -ForegroundColor Yellow

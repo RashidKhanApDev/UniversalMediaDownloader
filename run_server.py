@@ -42,7 +42,7 @@ if __name__ == "__main__":
     time.sleep(1)
     
     # Start the FastAPI server using Uvicorn
-    print("\n🚀 Starting Youtube Downloader Server...\n")
+    print("\n🚀 Starting Universal Media Downloader Server...\n")
     try:
         # Use sys.executable to ensure it uses the virtual environment's python correctly
         # This prevents FileNotFoundError on Windows when looking for 'uvicorn'

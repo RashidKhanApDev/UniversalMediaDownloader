@@ -1,7 +1,7 @@
 <div align="center">
 <br>
 <h3>👨‍💻 Dev by <b>Rashid Khan Ap</b> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg" width="20" align="center"></h3>
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0ba360&height=250&section=header&text=Ultimate%20YouTube%20Downloader&fontSize=60&fontColor=ffffff&desc=Sleek.%20Fast.%20Premium.&descSize=25&descColor=e0e0e0" width="100%">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0ba360&height=250&section=header&text=Universal%20Media%20Downloader&fontSize=60&fontColor=ffffff&desc=Sleek.%20Fast.%20Premium.&descSize=25&descColor=e0e0e0" width="100%">
 
 <br><br>
 
@@ -16,19 +16,19 @@
 
 <br><br>
 
-<a href="https://colab.research.google.com/github/RashidKhanApDev/YoutubeDownloader/blob/main/YoutubeDownloader.ipynb" target="_blank">
+<a href="https://colab.research.google.com/github/RashidKhanApDev/UniversalMediaDownloader/blob/main/UniversalMediaDownloader.ipynb" target="_blank">
   <img src="https://img.shields.io/badge/🔥_RUN_IN_GOOGLE_COLAB-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white" width="450" alt="Open In Colab"/>
 </a>
 
 <br><br>
 
-<a href="https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/RashidKhanApDev/YoutubeDownloader.git" target="_blank">
+<a href="https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/RashidKhanApDev/UniversalMediaDownloader.git" target="_blank">
   <img src="https://img.shields.io/badge/☁️_OPEN_IN_CLOUD_SHELL-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" width="450" alt="Open In Cloud Shell"/>
 </a>
 
 <br><br>
 
-> *Say goodbye to intrusive ads and slow downloads. Experience the premium way to fetch your favorite YouTube content locally or on the cloud.*
+> *Say goodbye to intrusive ads and slow downloads. Experience the premium way to fetch your favorite media content locally or on the cloud.*
 
 </div>
 
@@ -48,10 +48,10 @@
 ## 🌟 Overview & Description
 
 <div align="center">
-  <img src="assets/promo_banner.png" width="100%" alt="Ultimate YouTube Downloader Preview" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin-top: 20px; margin-bottom: 20px;">
+  <img src="assets/promo_banner.png" width="100%" alt="Universal Media Downloader Preview" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin-top: 20px; margin-bottom: 20px;">
 </div>
 
-Welcome to the **Ultimate YouTube Downloader**! This modern, responsive web application is built on top of the lightning-fast **FastAPI** framework and powered by the robust `yt-dlp` library. 
+Welcome to the **Universal Media Downloader**! This modern, responsive web application is built on top of the lightning-fast **FastAPI** framework and powered by the robust `yt-dlp` library. 
 
 Whether you are looking to save a quick audio track for your playlist or download a stunning cinematic video in pristine **4K or 8K resolution**, this tool has you covered. Designed with a gorgeous, interactive **Glassmorphism UI**, it guarantees a seamless and visually pleasing user experience while maintaining blazing-fast backend performance. 
 
@@ -85,7 +85,7 @@ graph TD;
     A[📱 Client Browser UI]:::client
     B{⚡ FastAPI Backend}:::backend
     C(yt-dlp Engine):::backend
-    D[📹 YouTube Servers]:::external
+    D[📹 Media Servers]:::external
     E((FFmpeg Processor)):::backend
     F[☁️ Cloudflare Tunnel]:::cloud
     G[💾 Local Storage / User]:::client
@@ -108,14 +108,14 @@ graph TD;
 A clean, organized, and scalable directory layout ensures maximum developer productivity:
 
 ```bash
-📦 YoutubeDownloader
+📦 UniversalMediaDownloader
  ┣ 📂 templates/           # Frontend UI Assets
  ┃ ┗ 📜 index.html         # Premium Glassmorphism View
  ┣ 📂 downloads/           # Secure Output Directory
  ┣ 📜 main.py              # Application Core (FastAPI)
  ┣ 📜 run_server.py        # Cross-platform Process Manager
  ┣ 📜 create_colab.py      # Cloud Generation Engine
- ┣ 📜 YoutubeDownloader.ipynb # Auto-generated Notebook
+ ┣ 📜 UniversalMediaDownloader.ipynb # Auto-generated Notebook
  ┣ 📜 requirements.txt     # Dependency Definitions
  ┣ 📜 run.bat              # Windows Automation Script
  ┣ 📜 run.sh               # Linux Automation Script
@@ -131,7 +131,7 @@ We utilized multiple industry-standard languages and frameworks to deliver this 
 ### ⚙️ JSON (Configuration)
 ```json
 {
-  "app_name": "YoutubeDownloader",
+  "app_name": "UniversalMediaDownloader",
   "version": "3.5.0",
   "author": "Rashid Khan",
   "license": "MIT"
@@ -143,7 +143,7 @@ We utilized multiple industry-standard languages and frameworks to deliver this 
 from fastapi import FastAPI
 import yt_dlp
 
-app = FastAPI(title="YouTube Downloader API")
+app = FastAPI(title="Universal Media Downloader API")
 
 @app.get("/api/info")
 async def get_video_info(url: str):
@@ -163,8 +163,8 @@ async function fetchDownloadUrl(videoId) {
 ### 🟧 HTML (Structure)
 ```html
 <div class="glass-container">
-    <h1>YouTube Downloader</h1>
-    <input type="text" placeholder="Paste YouTube Link Here...">
+    <h1>Universal Media Downloader</h1>
+    <input type="text" placeholder="Paste Media Link Here...">
     <button class="btn-primary">Fetch Video</button>
 </div>
 ```
@@ -236,9 +236,9 @@ fn process_stream(buffer: &[u8]) -> Result<(), &'static str> {
 ### 📜 TOML (Modern Python Config)
 ```toml
 [tool.poetry]
-name = "YoutubeDownloader"
+name = "UniversalMediaDownloader"
 version = "3.5.0"
-description = "Premium YouTube Downloader with Glassmorphism UI"
+description = "Premium Universal Media Downloader with Glassmorphism UI"
 authors = ["Rashid Khan <admin@example.com>"]
 ```
 
@@ -251,8 +251,8 @@ Before installing the tool locally, please ensure your system has **Python 3.8+*
 ### 💻 Command Line Setup (Bash)
 ```bash
 # Clone the repository
-git clone https://github.com/RashidKhanApDev/YoutubeDownloader.git
-cd YoutubeDownloader
+git clone https://github.com/RashidKhanApDev/UniversalMediaDownloader.git
+cd UniversalMediaDownloader
 
 # Create virtual environment and install dependencies
 python -m venv venv
@@ -301,7 +301,7 @@ services:
 
 ## 🇮🇳 ചെറുവിവരണം (Malayalam Summary)
 
-ഈ ടൂൾ ഉപയോഗിച്ച് നിങ്ങൾക്ക് YouTube വീഡിയോകളും ഓഡിയോകളും വളരെ എളുപ്പത്തിൽ ഏറ്റവും ഉയർന്ന ക്വാളിറ്റിയിൽ (2K, 4K ഉൾപ്പെടെ) ഡൗൺലോഡ് ചെയ്യാവുന്നതാണ്. ഇത് വളരെ ലളിതവും, അതിവേഗത്തിൽ പ്രവർത്തിക്കുന്നതും, ലോകോത്തര പ്രീമിയം ഡിസൈനോടുകൂടിയതുമാണ് (Glassmorphism UI). 
+ഈ ടൂൾ ഉപയോഗിച്ച് നിങ്ങൾക്ക് എല്ലാ സോഷ്യൽ മീഡിയ വീഡിയോകളും (Instagram, Facebook, Twitter, YouTube ഉൾപ്പെടെ) ഓഡിയോകളും വളരെ എളുപ്പത്തിൽ ഏറ്റവും ഉയർന്ന ക്വാളിറ്റിയിൽ (2K, 4K ഉൾപ്പെടെ) ഡൗൺലോഡ് ചെയ്യാവുന്നതാണ്. ഇത് വളരെ ലളിതവും, അതിവേഗത്തിൽ പ്രവർത്തിക്കുന്നതും, ലോകോത്തര പ്രീമിയം ഡിസൈനോടുകൂടിയതുമാണ് (Glassmorphism UI). 
 
 ഏറ്റവും മുകളിലുള്ള വലിയ **"RUN IN GOOGLE COLAB"** ബട്ടണിൽ ക്ലിക്ക് ചെയ്താൽ, നിങ്ങളുടെ ഫോണിൽ നിന്നോ കമ്പ്യൂട്ടറിൽ നിന്നോ യാതൊരുവിധ ഇൻസ്റ്റാളേഷനും ഇല്ലാതെ തന്നെ നേരിട്ട് ക്ലൗഡ് വഴി നിങ്ങൾക്ക് ഈ ടൂൾ ഉപയോഗിക്കാവുന്നതാണ്. 
 

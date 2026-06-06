@@ -11,7 +11,7 @@ nb = {
     {
       "cell_type": "markdown",
       "source": [
-        "# 🎥 Ultimate YouTube Downloader - Premium Cloud Edition\n",
+        "# 🎥 Universal Media Downloader - Premium Cloud Edition\n",
         "Google Colab does not allow auto-running for security reasons. Please click the **Play (▶️)** button below to start your private server. \n",
         "A premium interface will appear with your secure link once it's ready!"
       ],
@@ -25,8 +25,8 @@ nb = {
       "source": [
         "from IPython.display import clear_output\n",
         "print(\"⏳ Initializing Premium Cloud Environment...\")\n",
-        "!git clone https://github.com/RashidKhanApDev/YoutubeDownloader.git > /dev/null 2>&1\n",
-        "%cd YoutubeDownloader\n",
+        "!git clone https://github.com/RashidKhanApDev/UniversalMediaDownloader.git > /dev/null 2>&1\n",
+        "%cd UniversalMediaDownloader\n",
         "!pip install -r requirements.txt > /dev/null 2>&1\n",
         "\n",
         "import subprocess\n",
@@ -300,5 +300,5 @@ nb = {
   ]
 }
 
-with open('YoutubeDownloader.ipynb', 'w', encoding='utf-8') as f:
+with open('UniversalMediaDownloader.ipynb', 'w', encoding='utf-8') as f:
     json.dump(nb, f, indent=2)
