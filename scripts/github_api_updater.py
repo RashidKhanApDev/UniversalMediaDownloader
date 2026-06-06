@@ -13,7 +13,7 @@ import json
 
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 REPO_OWNER = "RashidKhanApDev"
-REPO_NAME = "YoutubeDownloader"
+REPO_NAME = "UniversalMediaDownloader"
 FILE_PATH = "dummy_file.txt"
 BRANCH = "main"
 

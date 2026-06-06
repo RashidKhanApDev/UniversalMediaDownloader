@@ -25,7 +25,7 @@
   
   <!-- Main Title -->
   <text x="640" y="140" font-family="Arial, sans-serif" font-size="72" font-weight="bold" text-anchor="middle" fill="#FFFFFF" letter-spacing="2">
-    YouTube Downloader
+    Universal Media Downloader
   </text>
   
   <!-- Subtitle -->
@@ -86,7 +86,7 @@
   
   <!-- Footer -->
   <text x="1200" y="625" font-family="Arial, sans-serif" font-size="14" text-anchor="end" fill="#666666">
-    github.com/RashidKhanApDev/YoutubeDownloader
+    github.com/RashidKhanApDev/UniversalMediaDownloader
   </text>
   
   <!-- Accent Lines -->
