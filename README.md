@@ -47,6 +47,10 @@
 
 ## 🌟 Overview & Description
 
+<div align="center">
+  <img src="assets/promo_banner.png" width="100%" alt="Ultimate YouTube Downloader Preview" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin-top: 20px; margin-bottom: 20px;">
+</div>
+
 Welcome to the **Ultimate YouTube Downloader**! This modern, responsive web application is built on top of the lightning-fast **FastAPI** framework and powered by the robust `yt-dlp` library. 
 
 Whether you are looking to save a quick audio track for your playlist or download a stunning cinematic video in pristine **4K or 8K resolution**, this tool has you covered. Designed with a gorgeous, interactive **Glassmorphism UI**, it guarantees a seamless and visually pleasing user experience while maintaining blazing-fast backend performance. 
